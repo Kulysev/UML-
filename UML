@@ -9,13 +9,13 @@ participant "Система Уведомлений" as NotificationSystem
 OrderSystem -> OrderSystem : Создание нового заказа
 OrderSystem -> PaymentSystem : Отправка информации о заказе для обработки платежа
 
-alt Успешная оплата
+alt 
     PaymentSystem -> PaymentSystem : Обработка платежа (успешно)
     PaymentSystem -> OrderSystem : Уведомление об успешной оплате
     OrderSystem -> OrderSystem : Изменение статуса заказа на "Оплачен"
     OrderSystem -> NotificationSystem : Уведомление об успешной оплате
     NotificationSystem -> Покупатель : Информирование об успешной оплате
-else Неуспешная оплата
+else 
     PaymentSystem -> PaymentSystem : Обработка платежа (неуспешно)
     PaymentSystem -> OrderSystem : Уведомление о неуспешной оплате
     OrderSystem -> OrderSystem : Изменение статуса заказа на "Неоплачен"
